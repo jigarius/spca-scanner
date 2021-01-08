@@ -20,17 +20,12 @@ module SPCA
       Digest::MD5.hexdigest(Marshal::dump(self))
     end
 
-    def to_hash
-      {
-        title: @title,
-        uri: @uri,
-        image: @image,
-        info: @info
-      }
-    end
-
-    def to_json(*_)
-      to_hash.to_json
+    def ==(other)
+      PetCard === other &&
+        @title == other.title &&
+        @image == other.image &&
+        @uri == other.uri &&
+        @info == other.info
     end
 
     # Create from Nokogiri::XML::Element for .pet--card.

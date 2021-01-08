@@ -28,6 +28,25 @@ module SPCA
       expect(subject.info).to eq('Dog | Baby | Male')
     end
 
+    it '.== checks equality correctly' do
+      o1 = PetCard.new(
+        title: 'Ryder',
+        image: Image.new(uri: 'http://ryder.com/avatar.png'),
+        info: 'Dog | Baby | Male',
+        uri: 'http://ryder.com/about'
+      )
+      expect(subject == o1).to be true
+
+      o2 = PetCard.new(
+        title: 'Daisy',
+        image: Image.new(uri: 'http://ryder.com/avatar.png'),
+        info: 'Dog | Adult | Male',
+        uri: 'http://daisy.com/about'
+      )
+
+      expect(subject == o2).to be false
+    end
+
     it '.create_from_element creates PetCard' do
       html = File.open(SPCA::ROOT_PATH + '/spec/fixtures/list.html')
       el =
