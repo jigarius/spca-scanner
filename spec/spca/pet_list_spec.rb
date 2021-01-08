@@ -12,6 +12,10 @@ module SPCA
 
       expect(list).to be_a_kind_of(Array)
       expect(list.length).to be(2)
+
+      list.each do |item|
+        expect(item).to be_a_kind_of(SPCA::PetCard)
+      end
     end
   end
 end
