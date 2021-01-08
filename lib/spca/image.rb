@@ -7,5 +7,10 @@ module SPCA
     def initialize(uri:)
       @uri = uri
     end
+
+    def ==(other)
+      Image === other &&
+        @uri == other.uri
+    end
   end
 end
