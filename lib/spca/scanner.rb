@@ -1,35 +1,23 @@
 # frozen_string_literal: true
 
-require 'net/http'
-require 'nokogiri'
-
-require_relative 'pet_list'
-require_relative 'pet_card'
-
 module SPCA
   class Scanner
+    URI_CATS = URI.parse('https://www.spca.com/en/adoption/cats-for-adoption/')
+
+    def initialize(cache:, fetcher: nil)
+      @cache = cache
+      @fetcher = fetcher || Fetcher.new(@cache)
+    end
+
     def execute
-      list = get_list
-    end
+      response = @fetcher.fetch(URI_CATS)
+      html = Nokogiri::HTML.parse(response)
 
-    private
+      PetList.from_element(html).map do |item|
+        next if @cache.exist? item.hash
 
-    def get_list
-      uri = URI.parse('https://www.spca.com/adoption/chats-en-adoption/')
-
-      PetList.from_element(get_html(uri))
-    end
-
-    def get_html(uri)
-      http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true
-      data = http.get(uri.request_uri)
-
-      html = data.body.gsub!(/[[:space:]]+/, ' ')
-
-      # TODO: Handle non-200 response.
-
-      Nokogiri::HTML.parse(html)
+        @cache.set item.hash, item
+      end.compact
     end
   end
 end
