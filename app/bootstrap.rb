@@ -11,6 +11,7 @@ require_relative '../lib/spca/fetcher'
 require_relative '../lib/spca/pet_card'
 require_relative '../lib/spca/pet_list'
 require_relative '../lib/spca/image'
+require_relative '../lib/spca/scanner'
 
 # Configuration
 Pry.config.pager = false
