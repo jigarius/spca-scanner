@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'pry'
-require 'json'
+require 'digest'
 require 'nokogiri'
 require 'net/http'
 
