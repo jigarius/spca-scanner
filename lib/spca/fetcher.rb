@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'net/http'
-
 module SPCA
   class Fetcher
     CACHE_TTL = 15
