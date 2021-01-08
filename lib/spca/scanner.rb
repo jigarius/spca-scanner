@@ -3,6 +3,7 @@
 require 'net/http'
 require 'nokogiri'
 
+require_relative 'pet_list'
 require_relative 'pet_card'
 
 module SPCA
@@ -16,11 +17,7 @@ module SPCA
     def get_list
       uri = URI.parse('https://www.spca.com/adoption/chats-en-adoption/')
 
-      get_html(uri)
-        .at_css('#page-main .section--grid')
-        .search('.pet--card').map do |item|
-          PetCard.from_element(item)
-        end
+      PetList.from_element(get_html(uri))
     end
 
     def get_html(uri)
