@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative 'image'
-
 module SPCA
   class PetCard
     attr_reader :title, :uri, :image, :info
@@ -16,6 +14,10 @@ module SPCA
       @uri = uri
       @image = image
       @info = info
+    end
+
+    def hash
+      Digest::MD5.hexdigest(Marshal::dump(self))
     end
 
     def to_hash
