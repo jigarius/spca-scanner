@@ -3,6 +3,7 @@
 module SPCA
   class Cache
     DEFAULT_TTL = 365 * 24 * 60 # 1 year
+    EXTENSION = 'cache'
 
     attr_reader :path
 
@@ -37,6 +38,12 @@ module SPCA
       age < ttl
     end
 
+    def clear
+      Dir.glob("#{@path}/*.#{EXTENSION}").each do |file|
+        File.unlink(file)
+      end
+    end
+
     private
 
     def serialize(object)
@@ -48,7 +55,7 @@ module SPCA
     end
 
     def storage_path(key)
-      "#{@path}/#{key}.cache"
+      "#{@path}/#{key}.#{EXTENSION}"
     end
   end
 end

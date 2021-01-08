@@ -1,15 +1,13 @@
 # frozen_string_literal: true
 
-require 'spca/cache'
-
 module SPCA
   describe Cache do
-    subject { Cache.new('/tmp') }
-
     DATA = { fname: 'John', lname: 'Doe' }
 
+    subject { Cache.new('/tmp') }
+
     before(:each) do
-      subject.remove(DATA.hash)
+      subject.clear
     end
 
     it '.path works' do
@@ -18,7 +16,7 @@ module SPCA
 
     it '.set puts items in cache correctly' do
       expect(subject.set(DATA.hash, DATA)).to eql(DATA)
-      expect(File.exist? "#{subject.path}/#{DATA.hash}.cache").to be true
+      expect(File.exist? "/#{subject.path}/#{DATA.hash}.cache").to be true
     end
 
     it '.get returns the item for valid items' do
@@ -65,6 +63,16 @@ module SPCA
       subject.set(DATA.hash, DATA)
       subject.remove(DATA.hash)
       expect(subject.get(DATA.hash)).to be_nil
+    end
+
+    it '.clear removes all items' do
+      subject.set('a', DATA)
+      subject.set('b', DATA)
+
+      subject.clear
+
+      expect(subject.get('a')).to be_nil
+      expect(subject.get('b')).to be_nil
     end
   end
 end
