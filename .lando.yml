@@ -1,0 +1,29 @@
+name: spca-scanner
+services:
+  appserver:
+    type: compose
+    services:
+      image: ruby:2.7
+      command: tail -f /dev/null
+    build:
+      - bundle install --gemfile=/app/Gemfile
+tooling:
+  irb:
+    service: appserver
+    cmd: irb
+  bundle:
+    service: appserver
+    cmd: bundle
+    dir: /app
+  rspec:
+    service: appserver
+    cmd: bundle exec rspec
+    dir: /app
+  rubocop:
+    service: appserver
+    cmd: bundle exec rubocop
+    dir: /app
+  srb:
+    service: appserver
+    cmd: bundle exec srb
+    dir: /app
