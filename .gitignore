@@ -1,4 +1,11 @@
-.env
+# JetBrains IDE.
 .idea
+
+# MacOS poop files.
 .DS_Store
-cache/*.cache
+
+# Cache storage.
+cache
+
+# Env file
+.env
