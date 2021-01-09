@@ -11,6 +11,7 @@ tooling:
   spcas:
     service: main
     cmd: ruby /app/spcas.rb
+    description: 'Runs the SPCA Scanner.'
   apt:
     service: main
     user: root
