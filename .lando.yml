@@ -3,11 +3,14 @@ services:
   main:
     type: compose
     services:
-      image: ruby:spcas
+      image: ruby:2.7
       command: tail -f /dev/null
     build:
-      - bundle install
+      - bundle install --gemfile=/app/Gemfile
 tooling:
+  spcas:
+    service: main
+    cmd: ruby /app/spcas.rb
   apt:
     service: main
     user: root
