@@ -49,8 +49,7 @@ module SPCA
     end
 
     def build_subject
-      # TODO: Use local timezone.
-      date = Time.now.strftime('%b %d, %Y')
+      date = Time.now.localtime(SPCA::TIMEZONE).strftime('%b %d, %Y')
 
       @mail.subject = "SPCA: #{@pets.length} new pets (#{date})"
     end
