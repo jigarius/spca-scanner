@@ -29,6 +29,7 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.10.0)
     rspec-support (3.10.1)
+    thor (1.0.1)
 
 PLATFORMS
   ruby
@@ -39,6 +40,7 @@ DEPENDENCIES
   nokogiri (~> 1.11, >= 1.11.1)
   pry (~> 0.13.1)
   rspec (~> 3.10)
+  thor (~> 1.0, >= 1.0.1)
 
 RUBY VERSION
    ruby 2.7.2p137
