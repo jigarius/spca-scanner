@@ -2,16 +2,22 @@
 
 require_relative 'app/bootstrap'
 
-scanner = SPCA::Scanner.new(
-  cache: SPCA::Cache.new(SPCA::CACHE_PATH)
-)
-
+cache = SPCA::Cache.new(SPCA::CACHE_PATH)
+scanner = SPCA::Scanner.new(cache: cache)
 result = scanner.execute
+
 unless result
   echo 'Read failed.'
   exit(1)
 end
 
+# Send email notification.
+unless result.empty?
+  mail = SPCA::Mail.new(result)
+  mail.deliver
+end
+
+# Display output.
 puts "#{result.length} new item(s) found."
 puts '======'
 
