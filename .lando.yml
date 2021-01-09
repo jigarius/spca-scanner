@@ -3,11 +3,14 @@ services:
   appserver:
     type: compose
     services:
-      image: ruby:2.7
+      image: ruby:spca-scanner
       command: tail -f /dev/null
     build:
-      - bundle install --gemfile=/app/Gemfile
+      - bundle install
 tooling:
+  apt:
+    service: appserver
+    user: root
   irb:
     service: appserver
     cmd: irb
@@ -22,8 +25,4 @@ tooling:
   rubocop:
     service: appserver
     cmd: bundle exec rubocop
-    dir: /app
-  srb:
-    service: appserver
-    cmd: bundle exec srb
     dir: /app
