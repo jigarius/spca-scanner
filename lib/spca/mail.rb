@@ -13,6 +13,7 @@ module SPCA
       build_to
       build_subject
       build_body
+      build_delivery_method
     end
 
     def deliver
