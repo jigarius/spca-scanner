@@ -16,6 +16,7 @@ require_relative '../lib/spca/pet_list'
 require_relative '../lib/spca/image'
 require_relative '../lib/spca/mail'
 require_relative '../lib/spca/scanner'
+require_relative '../lib/spca/cli'
 
 # Configuration
 Pry.config.pager = false
