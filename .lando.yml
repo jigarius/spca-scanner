@@ -1,28 +1,28 @@
-name: spca-scanner
+name: spcas
 services:
-  appserver:
+  main:
     type: compose
     services:
-      image: ruby:spca-scanner
+      image: ruby:spcas
       command: tail -f /dev/null
     build:
       - bundle install
 tooling:
   apt:
-    service: appserver
+    service: main
     user: root
   irb:
-    service: appserver
+    service: main
     cmd: irb
   bundle:
-    service: appserver
+    service: main
     cmd: bundle
     dir: /app
   rspec:
-    service: appserver
+    service: main
     cmd: bundle exec rspec
     dir: /app
   rubocop:
-    service: appserver
+    service: main
     cmd: bundle exec rubocop
     dir: /app
