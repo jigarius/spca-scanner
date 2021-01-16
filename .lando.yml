@@ -15,13 +15,13 @@ tooling:
   apt:
     service: main
     user: root
-  irb:
-    service: main
-    cmd: irb
   bundle:
     service: main
     cmd: bundle
     dir: /app
+  irb:
+    service: main
+    cmd: irb
   rspec:
     service: main
     cmd: bundle exec rspec
@@ -29,4 +29,8 @@ tooling:
   rubocop:
     service: main
     cmd: bundle exec rubocop
+    dir: /app
+  srb:
+    service: main
+    cmd: bundle exec srb
     dir: /app
