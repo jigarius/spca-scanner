@@ -1,12 +1,9 @@
 # frozen_string_literal: true
 
-require 'dotenv'
-require 'pry'
+Bundler.require(:default, :development)
+
 require 'digest'
-require 'mail'
-require 'nokogiri'
 require 'net/http'
-require 'thor'
 
 require_relative '../lib/spca'
 require_relative '../lib/spca/cache'
