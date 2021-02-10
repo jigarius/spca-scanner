@@ -3,15 +3,15 @@
 require 'spca/fetcher'
 
 module SPCA
-  describe Fetcher do
-    class MockNetHttpResponse
-      attr_reader :body
+  class MockNetHttpResponse
+    attr_reader :body
 
-      def initialize(body)
-        @body = body
-      end
+    def initialize(body)
+      @body = body
     end
+  end
 
+  describe Fetcher do
     before(:each) do
       @cache = Cache.new('/tmp')
       @fetcher = Fetcher.new(@cache)
