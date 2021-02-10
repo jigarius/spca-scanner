@@ -1,0 +1,26 @@
+AllCops:
+  SuggestExtensions: false
+  NewCops: enable
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Metrics/AbcSize:
+  Enabled: false
+Metrics/BlockLength:
+  Max: 64
+  Exclude:
+    - spec/**/*_spec.rb
+Metrics/MethodLength:
+  Max: 64
+
+Security/MarshalLoad:
+  Exclude:
+    - lib/spca/cache.rb
+
+Style/CaseEquality:
+  AllowOnConstant: true
+Style/Documentation:
+  Enabled: false
+Style/SymbolArray:
+  EnforcedStyle: brackets
