@@ -15,6 +15,7 @@ module SPCA
     def get(key, ttl = DEFAULT_TTL)
       path = storage_path(key)
       return unless exist? key, ttl
+
       unserialize(File.read(path))
     end
 
