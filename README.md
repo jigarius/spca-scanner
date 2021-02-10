@@ -10,6 +10,10 @@ has new pets available for adoption.
 >
 > ~ _[Jigarius](https://jigarius.com/)_
 
+I'm sure SPCA publishes this info on Twitter and there must be other tools
+that do similar things. However, I wanted to write some object-oriented
+Ruby code, so I wrote this tool.
+
 ## Usage
 
   * Create `.env` based on `.env.example`.
