@@ -10,7 +10,7 @@ module SPCA
         'dogs' => Category::DOGS,
         'rabbits' => Category::RABBITS,
         'birds' => Category::BIRDS,
-        'other' => Category::OTHER,
+        'other' => Category::OTHER
       }
 
       expect(Category.all).to eq(expectation)

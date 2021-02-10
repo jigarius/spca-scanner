@@ -37,7 +37,7 @@ module SPCA
         DOGS.id => DOGS,
         RABBITS.id => RABBITS,
         BIRDS.id => BIRDS,
-        OTHER.id => OTHER,
+        OTHER.id => OTHER
       }
     end
 
