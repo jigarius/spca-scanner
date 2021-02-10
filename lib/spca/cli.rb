@@ -31,7 +31,7 @@ module SPCA
         cache: SPCA::Cache.new("#{SPCA::ROOT_PATH}/cache")
       )
 
-      while true
+      loop do
         pets = scanner.execute(category: options.category)
 
         unless pets
