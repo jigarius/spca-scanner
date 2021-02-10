@@ -40,15 +40,13 @@ module SPCA
     end
 
     def build_from
-      @mail.from = @mail.reply_to = ENV.fetch('MAILER_FROM') do
-        raise RuntimeError, 'MAILER_FROM env var is not set.'
-      end
+      @mail.from = @mail.reply_to =
+        ENV.fetch('MAILER_FROM') { raise RuntimeError }
     end
 
     def build_to
-      @mail.to = ENV.fetch('MAILER_TO') do
-        raise RuntimeError, 'MAILER_TO env var is not set.'
-      end.split(',')
+      @mail.to =
+        ENV.fetch('MAILER_TO') { raise RuntimeError }.split(',')
     end
 
     def build_subject
@@ -87,7 +85,7 @@ module SPCA
 
     def env(key, default = nil)
       ENV.fetch(key) do
-        raise RuntimeError, "ENV.#{key} must be defined." if default.nil?
+        raise RuntimeError if default.nil?
 
         default
       end
