@@ -48,7 +48,7 @@ module SPCA
     end
 
     it '.create_from_element creates PetCard' do
-      html = File.open(SPCA::ROOT_PATH + '/spec/fixtures/list.html')
+      html = File.open("#{SPCA::ROOT_PATH}/spec/fixtures/list.html")
       el =
         Nokogiri::HTML
           .parse(html)
