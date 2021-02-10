@@ -2,13 +2,16 @@
 
 module SPCA
   class Mail
-    # pets: PetList
-    def initialize(pets)
+    attr_reader :mail
+
+    # pets: PetList.
+    # mail: ::Mail object from the 'mail' gem.
+    def initialize(pets, mail: nil)
       raise ArgumentError, 'Pets cannot be empty' if pets.empty?
 
       @pets = pets
+      @mail = mail || ::Mail.new
 
-      @mail = ::Mail.new
       build_from
       build_to
       build_subject
@@ -25,7 +28,7 @@ module SPCA
     def build_delivery_method
       options = {
         address: env('SMTP_HOST'),
-        port: env('SMTP_PORT', 465),
+        port: env('SMTP_PORT', '465'),
         domain: env('SMTP_DOMAIN'),
         user_name: env('SMTP_USERNAME'),
         password: env('SMTP_PASSWORD'),
