@@ -6,7 +6,7 @@ module SPCA
   describe PetList do
     it '.from_element creates a PetList' do
       el = Nokogiri::HTML.parse(
-        File.open(SPCA::ROOT_PATH + '/spec/fixtures/list.html')
+        File.open("#{SPCA::ROOT_PATH}/spec/fixtures/list.html")
       )
       list = PetList.from_element(el)
 
