@@ -6,7 +6,7 @@ module SPCA
       el = Nokogiri::HTML.parse(
         File.open("#{SPCA::ROOT_PATH}/spec/fixtures/list.html")
       )
-      @pets = PetList::from_element(el)
+      @pets = PetList.from_element(el)
 
       @env = {
         MAILER_FROM: 'no-reply@example.com',
