@@ -11,16 +11,16 @@ module SPCA
       @scanner = Scanner.new(fetcher: @fetcher, cache: @cache)
 
       @response =
-        File.read(SPCA::ROOT_PATH + '/spec/fixtures/list.html')
+        File.read("#{SPCA::ROOT_PATH}/spec/fixtures/list.html")
     end
 
     it '.execute returns an Array of PetCards' do
       expect(@fetcher)
         .to receive(:fetch)
-        .with(category: Category::CATS.uri)
+        .with(Category::CATS.uri)
         .and_return(@response)
 
-      result = @scanner.execute(category: Category::CATS)
+      result = @scanner.execute(category: Category::CATS.id)
       expect(result).to be_a_kind_of(Array)
       expect(result.length).to be(2)
 
@@ -47,12 +47,13 @@ module SPCA
         .to receive(:from_element).twice
         .and_return([ryder, daisy])
 
-      expect(@scanner.execute(category: Category::DOGS)).to eq([ryder, daisy])
+      expect(@scanner.execute(category: Category::DOGS.id))
+        .to eq([ryder, daisy])
 
       # Remove Ryder from cache, while Daisy stays.
       @cache.remove(ryder.hash)
 
-      expect(@scanner.execute(category: Category::DOGS)).to eq([ryder])
+      expect(@scanner.execute(category: Category::DOGS.id)).to eq([ryder])
     end
   end
 end
