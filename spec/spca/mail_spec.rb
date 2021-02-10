@@ -4,7 +4,7 @@ module SPCA
   describe Mail do
     before :all do
       el = Nokogiri::HTML.parse(
-        File.open(SPCA::ROOT_PATH + '/spec/fixtures/list.html')
+        File.open("#{SPCA::ROOT_PATH}/spec/fixtures/list.html")
       )
       @pets = PetList::from_element(el)
 
