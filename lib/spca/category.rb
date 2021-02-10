@@ -4,7 +4,7 @@ module SPCA
   class Category
     attr_reader :id, :uri
 
-    def initialize(id: , uri:)
+    def initialize(id:, uri:)
       @id = id
       @uri = uri
     end
