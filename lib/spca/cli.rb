@@ -27,8 +27,9 @@ module SPCA
            default: false,
            desc: 'Show verbose output in terminal.'
     def scan
-      cache = SPCA::Cache.new(SPCA::CACHE_PATH)
-      scanner = SPCA::Scanner.new(cache: cache)
+      scanner = SPCA::Scanner.new(
+        cache: SPCA::Cache.new("#{SPCA::ROOT_PATH}/cache")
+      )
 
       while true
         pets = scanner.execute(category: options.category)
