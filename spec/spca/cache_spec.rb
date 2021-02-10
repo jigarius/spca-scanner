@@ -2,11 +2,10 @@
 
 module SPCA
   describe Cache do
-    DATA = { fname: 'John', lname: 'Doe' }
-
     subject { Cache.new('/tmp') }
 
     before(:each) do
+      @data = { fname: 'John', lname: 'Doe' }
       subject.clear
     end
 
@@ -15,59 +14,59 @@ module SPCA
     end
 
     it '.set puts items in cache correctly' do
-      expect(subject.set(DATA.hash, DATA)).to eql(DATA)
-      expect(File.exist? "/#{subject.path}/#{DATA.hash}.cache").to be true
+      expect(subject.set(@data.hash, @data)).to eql(@data)
+      expect(File.exist?("/#{subject.path}/#{@data.hash}.cache")).to be true
     end
 
     it '.get returns the item for valid items' do
-      subject.set(DATA.hash, DATA)
+      subject.set(@data.hash, @data)
 
-      expect(subject.get(DATA.hash)).to eq(DATA)
+      expect(subject.get(@data.hash)).to eq(@data)
     end
 
     it '.get returns nil for non-existent items' do
-      expect(subject.get(DATA.hash)).to be_nil
+      expect(subject.get(@data.hash)).to be_nil
     end
 
     it '.get returns nil for expired items' do
-      subject.set(DATA.hash, DATA)
+      subject.set(@data.hash, @data)
       FileUtils.touch(
-        "#{subject.path}/#{DATA.hash}.cache",
-        :mtime => Time.now - 61
+        "#{subject.path}/#{@data.hash}.cache",
+        mtime: Time.now - 61
       )
 
-      expect(subject.get(DATA.hash, 1)).to be_nil
+      expect(subject.get(@data.hash, 1)).to be_nil
     end
 
     it '.exist? returns true for valid items' do
-      subject.set(DATA.hash, DATA)
+      subject.set(@data.hash, @data)
 
-      expect(subject.exist?(DATA.hash)).to eq(true)
+      expect(subject.exist?(@data.hash)).to eq(true)
     end
 
     it '.exist? returns false for non-existent items' do
-      expect(subject.exist?(DATA.hash)).to be(false)
+      expect(subject.exist?(@data.hash)).to be(false)
     end
 
     it '.exist? returns false for expired items' do
-      subject.set(DATA.hash, DATA)
+      subject.set(@data.hash, @data)
       FileUtils.touch(
-        "#{subject.path}/#{DATA.hash}.cache",
-        :mtime => Time.now - 61
+        "#{subject.path}/#{@data.hash}.cache",
+        mtime: Time.now - 61
       )
 
-      expect(subject.exist?(DATA.hash, 1)).to be(false)
+      expect(subject.exist?(@data.hash, 1)).to be(false)
     end
 
     it '.remove removes items' do
-      subject.set(DATA.hash, DATA)
-      subject.remove(DATA.hash)
-      expect(subject.get(DATA.hash)).to be_nil
+      subject.set(@data.hash, @data)
+      subject.remove(@data.hash)
+      expect(subject.get(@data.hash)).to be_nil
     end
 
     it '.clear removes all items' do
-      subject.set('a', DATA)
-      subject.set('b', DATA)
+      subject.set('a', @data)
+      subject.set('b', @data)
 
       subject.clear
 
