@@ -18,4 +18,5 @@ has new pets available for adoption.
       [SendGrid](https://sendgrid.com/).
   * `lando start` (Lando must be installed).
   * `lando spcas`; Execute a scan.
-    * Suggested usage: `lando spcas -v --email --interval 10`
+    * Suggested usage: `lando spcas -v --category=cats --email --interval 10`
+    * More options: `lando spcas help scan`.

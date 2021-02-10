@@ -17,10 +17,10 @@ module SPCA
     it '.execute returns an Array of PetCards' do
       expect(@fetcher)
         .to receive(:fetch)
-        .with(Scanner::URI_CATS)
+        .with(category: Category::CATS.uri)
         .and_return(@response)
 
-      result = @scanner.execute
+      result = @scanner.execute(category: Category::CATS)
       expect(result).to be_a_kind_of(Array)
       expect(result.length).to be(2)
 
@@ -47,12 +47,12 @@ module SPCA
         .to receive(:from_element).twice
         .and_return([ryder, daisy])
 
-      expect(@scanner.execute).to eq([ryder, daisy])
+      expect(@scanner.execute(category: Category::DOGS)).to eq([ryder, daisy])
 
       # Remove Ryder from cache, while Daisy stays.
       @cache.remove(ryder.hash)
 
-      expect(@scanner.execute).to eq([ryder])
+      expect(@scanner.execute(category: Category::DOGS)).to eq([ryder])
     end
   end
 end

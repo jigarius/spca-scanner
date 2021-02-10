@@ -12,6 +12,11 @@ module SPCA
            type: :boolean,
            default: false,
            desc: 'Send an email notification.'
+    option :category,
+           type: :string,
+           enum: Category.all.keys,
+           default: Category.all.keys.first,
+           desc: 'Pet category.'
     option :interval,
            type: :numeric,
            default: 0,
@@ -26,7 +31,7 @@ module SPCA
       scanner = SPCA::Scanner.new(cache: cache)
 
       while true
-        pets = scanner.execute
+        pets = scanner.execute(category: options.category)
 
         unless pets
           echo 'Read failed.'
