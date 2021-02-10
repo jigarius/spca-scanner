@@ -13,3 +13,4 @@ gem 'thor', '~> 1.0', '>= 1.0.1'
 gem 'dotenv', '~> 2.1', '>= 2.1.1', group: :development
 gem 'pry', '~> 0.13.1', group: :development
 gem 'rspec', '~> 3.10', group: [:development, :test]
+gem "rubocop", "~> 1.9", group: [:development, :test]
