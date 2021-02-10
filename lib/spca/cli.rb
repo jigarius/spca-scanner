@@ -43,8 +43,8 @@ module SPCA
 
         return if pets.empty?
 
-        send_puts(pets) if options.verbose
-        send_mail(pets) if options.email
+        send_puts(pets)
+        send_mail(pets)
 
         break unless options.interval.positive?
 
@@ -57,20 +57,24 @@ module SPCA
     private
 
     def send_puts(pets)
+      return unless options.verbose
+
       puts '======'
 
       pets.each do |item|
         puts "#{item.title} | #{item.info}"
-        puts "#{item.uri}"
+        puts item.uri.to_s
         puts '------'
       end
     end
 
     def send_mail(pets)
-      unless pets.empty?
-        mail = SPCA::Mail.new(pets)
-        mail.deliver
-      end
+      return unless options.email
+
+      return if pets.empty?
+
+      mail = SPCA::Mail.new(pets)
+      mail.deliver
     end
   end
 end
