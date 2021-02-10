@@ -6,6 +6,7 @@ services:
       image: ruby:2.7
       command: tail -f /dev/null
     build:
+      - bundle config set with 'default:development'
       - bundle install --gemfile=/app/Gemfile
 tooling:
   spcas:
@@ -22,15 +23,11 @@ tooling:
   irb:
     service: main
     cmd: irb
-  rspec:
+  test:
     service: main
     cmd: bundle exec rspec
     dir: /app
-  rubocop:
+  lint:
     service: main
     cmd: bundle exec rubocop
-    dir: /app
-  srb:
-    service: main
-    cmd: bundle exec srb
     dir: /app
