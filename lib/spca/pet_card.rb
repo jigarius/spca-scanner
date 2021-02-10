@@ -29,13 +29,13 @@ module SPCA
     end
 
     # Create from Nokogiri::XML::Element for .pet--card.
-    def self.from_element(el)
-      title = el.at_css('.card--title').content.strip
-      uri = el.at_css('.card--link').attributes['href'].value
-      info = el.at_css('.pet--infos').content.strip
+    def self.from_element(element)
+      title = element.at_css('.card--title').content.strip
+      uri = element.at_css('.card--link').attributes['href'].value
+      info = element.at_css('.pet--infos').content.strip
 
       image = Image.new(
-        uri: el.at_css('img').attributes['src'].value
+        uri: element.at_css('img').attributes['src'].value
       )
 
       new(
