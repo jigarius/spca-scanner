@@ -42,21 +42,21 @@ module SPCA
 
     it '.body' do
       expectation = <<~BODY
-      <div>
-        <p>Here's a list of new pets that are available for adoption.</p>
         <div>
-          <h2><a href="#{@pets[0].uri}">#{@pets[0].title}</a></h2>
-          <p>#{@pets[0].info}</p>
-          <div><img src="#{@pets[0].image.uri}" height="150" /></div>
-          <hr />
-        </div>
-        <div>
-          <h2><a href="#{@pets[1].uri}">#{@pets[1].title}</a></h2>
-          <p>#{@pets[1].info}</p>
-          <div><img src="#{@pets[1].image.uri}" height="150" /></div>
-          <hr />
-        </div>
-        <p>If you like any of them, act now!</p>
+          <p>Here's a list of new pets that are available for adoption.</p>
+          <div>
+            <h2><a href="#{@pets[0].uri}">#{@pets[0].title}</a></h2>
+            <p>#{@pets[0].info}</p>
+            <div><img src="#{@pets[0].image.uri}" height="150" /></div>
+            <hr />
+          </div>
+          <div>
+            <h2><a href="#{@pets[1].uri}">#{@pets[1].title}</a></h2>
+            <p>#{@pets[1].info}</p>
+            <div><img src="#{@pets[1].image.uri}" height="150" /></div>
+            <hr />
+          </div>
+          <p>If you like any of them, act now!</p>
         </div>
       BODY
       expectation = expectation.gsub(/\n/, '').gsub(/>\s+</, '><')
