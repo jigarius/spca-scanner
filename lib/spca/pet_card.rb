@@ -17,7 +17,7 @@ module SPCA
     end
 
     def hash
-      Digest::MD5.hexdigest(Marshal::dump(self))
+      Digest::MD5.hexdigest(Marshal.dump(self))
     end
 
     def ==(other)
