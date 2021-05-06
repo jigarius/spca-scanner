@@ -14,6 +14,8 @@ I'm sure SPCA publishes this info on Twitter and there must be other tools
 that do similar things. However, I wanted to write some object-oriented
 Ruby code, so I wrote this tool.
 
+Read the full article on Jigarius.com: [Building a Web Scraper/Watcher with Ruby: Cats + Ruby + CLI + Emails](https://jigarius.com/blog/spca-scanner).
+
 ## Usage
 
   * Create `.env` based on `.env.example`.
